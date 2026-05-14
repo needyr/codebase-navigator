@@ -119,11 +119,15 @@ Use before generating code, tests, API docs, comments, names, review findings, o
 
 Trigger when user asks to commit, prepare a commit message, validate staged changes, or check commit compliance.
 
+**IMPORTANT — Commit Principles (must enforce):**
+- **Single responsibility**: one interface per commit, one feature per commit, one public method per commit
+- Do not bundle unrelated changes into one commit
+
 1. Run `git status --short --branch`
 2. Read `.agent/codebase-navigator/standards-index.md`
 3. Read `.agent/codebase-navigator/standards/commit-conventions.md`
 4. Inspect staged changes with `git diff --cached --name-status` and `git diff --cached --stat`
-5. If staged changes violate single-responsibility commit rules, stop and ask whether to split
+5. If staged changes violate single-responsibility commit rules, **STOP and ask whether to split**. Do not proceed until scope is resolved.
 6. Generate commit message according to commit conventions
 7. Commit only after scope is clear
 8. Do not push unless explicitly requested
