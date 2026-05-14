@@ -1,6 +1,6 @@
 ---
 name: codebase-navigator
-description: Use when exploring local backend project architecture or when the assistant needs to understand project structure before writing code. Detects stack, maintains indexes, and asks confirmation before plans.
+description: Use when exploring local backend project architecture, understanding project structure before writing code, applying project standards, or preparing commit messages. Detects stack, maintains indexes, reads relevant standards such as commit conventions, and asks confirmation before plans.
 ---
 
 # Codebase Navigator
