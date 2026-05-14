@@ -27,7 +27,7 @@ Codebase Navigator is a Claude Code skill that helps you explore and understand 
 ### Installation
 
 ```bash
-npx skills add your-username/codebase-navigator
+npx skills add needyr/codebase-navigator
 ```
 
 ### Usage
@@ -111,7 +111,7 @@ Codebase Navigator 是一个 Claude Code 技能，帮助你探索和理解本地
 ### 安装
 
 ```bash
-npx skills add your-username/codebase-navigator
+npx skills add needyr/codebase-navigator
 ```
 
 ### 使用方式
