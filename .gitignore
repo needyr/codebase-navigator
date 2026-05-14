@@ -26,3 +26,9 @@ Thumbs.db
 
 # Agent drafts (generated at runtime)
 .agent/
+
+# CI / local dev (not part of skill package)
+.github/
+
+# Docs / plans (not part of skill package)
+docs/

@@ -131,3 +131,55 @@ Trigger when user asks to commit, prepare a commit message, validate staged chan
 6. Generate commit message according to commit conventions
 7. Commit only after scope is clear
 8. Do not push unless explicitly requested
+
+### Few-Shot Examples
+
+**Example 1: Splitting mixed staged changes**
+
+User says: "帮我提交"
+
+Agent analyzes staged changes and finds 6 unrelated changes mixed together. Agent responds:
+
+```
+重新分析 staged 的变更，按照规范应该拆分为以下独立的 commit：
+
+| 变更 | Commit Message |
+|------|---------------|
+| `queryAuctionLikeDataStatistics` 复杂SQL拆分为多条简单查询+Java层聚合 | `feat(业务服务): 优化同类拍卖统计查询，SQL拆分为多条简单查询` |
+| `queryAuctionLikeDataList` 同类拍卖推荐接口及 DTO/Param/Mapper | `feat(业务服务): 新增同类拍卖推荐查询接口` |
+| `CaseProjectIntermediaryServiceImpl` continue→break + ES参数 | `fix(业务服务): 修复中介同类推荐循环逻辑及ES查询参数` |
+| `AmountUtils` 工具类 | `feat(业务服务): 新增金额计算工具类` |
+| `RedisKey` 缓存 key 简化 | `refactor(公共模块): 简化同类拍卖统计缓存key格式` |
+| `.gitignore` 忽略 `.claude/` `CLAUDE.md` | `chore: 添加Claude相关文件到gitignore` |
+
+因为所有文件已经在 stage 区，拆 commit 需要：
+1. 先 `git reset --soft HEAD` 撤回 stage
+2. 分批 `git add` + `git commit`
+```
+
+**Example 2: Single feature commit**
+
+Staged changes:
+- `feat: add Commit Preparation workflow` (SKILL.md + workflows.md)
+
+Agent responds:
+```bash
+git commit -m "feat: add Commit Preparation workflow
+
+- Add Commit Preparation workflow to references/workflows.md
+- Update SKILL.md When to Use with commit and standards application scenarios
+- Add Commit preparation to Task Decision Tree"
+```
+
+**Example 3: Enforcing constraint**
+
+Staged changes include a new API + a bug fix in unrelated module. Agent responds:
+
+```
+检测到 staged 变更违反了单一职责原则：
+
+1. `feat(用户模块): 新增用户注册接口` — 新功能
+2. `fix(订单模块): 修复订单状态机转换异常` — Bug 修复
+
+建议拆分为两个独立 commit。是否拆分？
+```
