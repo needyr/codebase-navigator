@@ -20,6 +20,8 @@ A project-aware development assistant that makes the agent prove it understands 
 - Code review
 - Generating tests or API documentation
 - Finding reusable methods
+- Preparing commits, generating commit messages, or validating staged changes against project conventions
+- Applying project standards to code, tests, docs, names, or commit messages
 - User explicitly asks to update project knowledge or refresh indexes
 
 ## Project Knowledge Location
@@ -127,6 +129,7 @@ Identify user's task before reading indexes:
 | Refactor duplicated logic | `references/workflows.md#refactor-duplicated-logic-workflow` |
 | Debug error | `references/workflows.md#debugging-workflow` |
 | Code review | `references/workflows.md#code-review-workflow` |
+| Commit preparation | `references/workflows.md#commit-preparation-workflow` |
 | Generate tests or API docs | Use parent task context and `references/output-templates.md` |
 
 ## Index Selection Rules

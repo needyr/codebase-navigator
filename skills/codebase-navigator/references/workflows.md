@@ -114,3 +114,16 @@ Use before generating code, tests, API docs, comments, names, review findings, o
 3. Prefer confirmed standards over inferred drafts.
 4. If relevant standards are missing, infer from nearby project code and ask before treating the inference as a rule.
 5. Apply standards in the output and mention important assumptions when a standard is incomplete.
+
+## Commit Preparation Workflow
+
+Trigger when user asks to commit, prepare a commit message, validate staged changes, or check commit compliance.
+
+1. Run `git status --short --branch`
+2. Read `.agent/codebase-navigator/standards-index.md`
+3. Read `.agent/codebase-navigator/standards/commit-conventions.md`
+4. Inspect staged changes with `git diff --cached --name-status` and `git diff --cached --stat`
+5. If staged changes violate single-responsibility commit rules, stop and ask whether to split
+6. Generate commit message according to commit conventions
+7. Commit only after scope is clear
+8. Do not push unless explicitly requested
