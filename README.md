@@ -154,7 +154,7 @@ skills/codebase-navigator/
 └── scripts/              # Python 扫描脚本（仅标准库）
     ├── scanner.py
     ├── detect_project.py
-    ├── impact_project.py
+    ├── impact_scan.py
     ├── refresh_indexes.py
     ├── scan_apis.py
     ├── scan_classes.py
