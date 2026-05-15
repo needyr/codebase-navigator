@@ -1,5 +1,7 @@
 # Codebase Navigator
 
+[中文文档](README.zh-CN.md)
+
 Codebase Navigator is a project-aware skills pack for coding agents working in backend codebases. It combines a small router skill, focused workflow skills, project indexes, standards documents, and startup hooks that remind the agent to pick the right workflow before acting.
 
 ## Quickstart
