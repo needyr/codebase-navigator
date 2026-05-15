@@ -120,17 +120,23 @@ Use before generating code, tests, API docs, comments, names, review findings, o
 Trigger when user asks to commit, prepare a commit message, validate staged changes, or check commit compliance.
 
 **IMPORTANT — Commit Principles (must enforce):**
-- **Single responsibility**: one interface per commit, one feature per commit, one public method per commit
+- **Revert boundary first**: one commit must be independently revertable. Reverting it must not affect another feature, business entry point, or public method that can be released, verified, and rolled back separately
+- **Single responsibility**: one interface per commit, one feature per commit, one public method per commit, one business entry point per commit
 - Do not bundle unrelated changes into one commit
+- Do not merge changes only because they use the same implementation pattern, the same technical solution, or similar commit messages
 
 1. Run `git status --short --branch`
 2. Read `.agent/codebase-navigator/standards-index.md`
 3. Read `.agent/codebase-navigator/standards/commit-conventions.md`
-4. Inspect staged changes with `git diff --cached --name-status` and `git diff --cached --stat`
-5. If staged changes violate single-responsibility commit rules, **STOP and ask whether to split**. Do not proceed until scope is resolved.
-6. Generate commit message according to commit conventions
-7. Commit only after scope is clear
-8. Do not push unless explicitly requested
+4. Inspect staged and unstaged changes with `git diff --cached --name-status`, `git diff --cached --stat`, `git diff --name-status`, and `git diff --stat`
+5. For each changed file or hunk, identify the affected feature, public method, service method, controller route, page, or business entry point
+6. Run the revert boundary check: if this commit is reverted later, confirm it rolls back only one independently releasable, verifiable, and rollbackable change
+7. If changes violate revert boundary or single-responsibility rules, **STOP and propose split commits**. Do not proceed until scope is resolved.
+8. If staged files already contain multiple independent revert boundaries, do not use destructive cleanup commands. Prefer selective staging or ask before any reset/stash/checkout operation.
+9. Generate commit message according to commit conventions
+10. Commit only after scope is clear
+11. After commit, run `git status --short --untracked-files=all` to verify untracked files did not disappear
+12. Do not push unless explicitly requested
 
 ### Few-Shot Examples
 
@@ -153,8 +159,9 @@ Agent analyzes staged changes and finds 6 unrelated changes mixed together. Agen
 | `.gitignore` 忽略 `.claude/` `CLAUDE.md` | `chore: 添加Claude相关文件到gitignore` |
 
 因为所有文件已经在 stage 区，拆 commit 需要：
-1. 先 `git reset --soft HEAD` 撤回 stage
-2. 分批 `git add` + `git commit`
+1. 先确认 `git status --short --untracked-files=all`，记录 untracked 文件
+2. 优先用选择性 staging 或交互式 staging 拆分提交
+3. 如确实需要 reset/stash/checkout，必须先确认不会丢失 untracked 文件，并在操作后立即再次检查 `git status --short --untracked-files=all`
 ```
 
 **Example 2: Single feature commit**
@@ -182,4 +189,20 @@ Staged changes include a new API + a bug fix in unrelated module. Agent responds
 2. `fix(订单模块): 修复订单状态机转换异常` — Bug 修复
 
 建议拆分为两个独立 commit。是否拆分？
+```
+
+**Example 4: Same technical pattern is not enough**
+
+Staged changes include two service methods that both change "7-level ES fallback queries" to "single ES query + in-memory sorting":
+
+```
+检测到 staged 变更使用了相同技术方案，但不满足同一个可回滚边界：
+
+1. `CaseProjectIntermediaryServiceImpl` — 影响投资中介推荐场景
+2. `CaseProjectManagerRecruitServiceImpl` — 影响管理人招募推荐场景
+
+这两个推荐场景可以独立发布、独立验证、独立回滚。
+如果放在同一个 commit，未来 revert 其中一个场景时会连带回滚另一个场景。
+
+结论：不能仅因改法相同合并提交。建议拆分为两个 commit。
 ```

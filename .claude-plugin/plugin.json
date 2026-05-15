@@ -1,0 +1,21 @@
+{
+  "name": "codebase-navigator",
+  "description": "Project-aware skills for backend codebase navigation, standards, commits, debugging, reviews, tests, and API workflows",
+  "version": "1.0.0",
+  "author": {
+    "name": "needyr"
+  },
+  "homepage": "https://github.com/needyr/codebase-navigator",
+  "repository": "https://github.com/needyr/codebase-navigator",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "codebase",
+    "backend",
+    "standards",
+    "commits",
+    "debugging",
+    "code-review",
+    "workflows"
+  ]
+}

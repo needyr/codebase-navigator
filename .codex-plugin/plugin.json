@@ -1,0 +1,44 @@
+{
+  "name": "codebase-navigator",
+  "version": "1.0.0",
+  "description": "Project-aware skills for backend codebase navigation, standards, commits, debugging, reviews, tests, and API workflows.",
+  "author": {
+    "name": "needyr",
+    "url": "https://github.com/needyr"
+  },
+  "homepage": "https://github.com/needyr/codebase-navigator",
+  "repository": "https://github.com/needyr/codebase-navigator",
+  "license": "MIT",
+  "keywords": [
+    "codebase",
+    "backend",
+    "skills",
+    "standards",
+    "commits",
+    "debugging",
+    "code-review",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codebase Navigator",
+    "shortDescription": "Project-aware backend navigation, standards, commit, and debugging workflows",
+    "longDescription": "Use Codebase Navigator to route coding agents through focused project-aware skills for code lookup, index maintenance, standards management, safe commit preparation, API changes, root-cause debugging, code review, tests, and API documentation.",
+    "developerName": "needyr",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Help me understand this backend codebase.",
+      "Help me commit my code safely."
+    ],
+    "websiteURL": "https://github.com/needyr/codebase-navigator",
+    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

@@ -1,17 +1,24 @@
 {
   "name": "codebase-navigator",
   "version": "1.0.0",
-  "description": "Claude Code skill for exploring local backend codebase architecture",
+  "description": "Composable codebase navigation, standards, commit, debugging, review, test, and API workflow skills for coding agents",
   "main": "skills/codebase-navigator/SKILL.md",
   "scripts": {
     "validate": "node scripts/validate.js"
   },
   "keywords": [
     "claude-code",
+    "codex",
+    "plugin",
     "skill",
+    "skills",
     "codebase",
     "backend",
-    "architecture"
+    "architecture",
+    "commits",
+    "debugging",
+    "code-review",
+    "workflow"
   ],
   "license": "MIT",
   "engines": {
