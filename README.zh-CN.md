@@ -36,43 +36,37 @@ Codebase Navigator 把项目理解和任务执行拆开。
 
 ## 安装
 
-安装方式取决于你使用的 agent 环境。如果你同时使用多个环境，需要分别安装插件。
+Codebase Navigator 当前尚未发布到 Claude 或 Codex 官方插件市场。现在应从这个 GitHub 仓库安装，或者在环境不支持从 GitHub 安装插件时手动复制 skills。
+
+### 推荐方式：npx
+
+从 GitHub 安装 skills：
+
+```bash
+npx skills add needyr/codebase-navigator
+```
+
+这个命令会从仓库源码安装 skills。适合使用当前 GitHub 版本，并且不依赖官方 marketplace 分发的场景。
 
 ### Claude Code
 
-从本地仓库安装：
+本仓库已经包含 Claude 插件元数据 `.claude-plugin/plugin.json`，但尚未发布到 Claude 官方插件市场。
+
+如果你的 Claude Code 环境支持从本地 checkout 安装插件，可以使用绝对路径：
 
 ```bash
-/plugin install /path/to/codebase-navigator
+/plugin install /absolute/path/to/codebase-navigator
 ```
 
-Claude 插件元数据位于：
+如果你的环境只支持 marketplace 插件，则需要先把该插件发布到 Claude 兼容的 marketplace 后才能这样安装。
 
-```text
-.claude-plugin/plugin.json
-```
+### Codex CLI 和 Codex App
 
-### Codex CLI
+本仓库已经包含 Codex 插件元数据 `.codex-plugin/plugin.json`，但尚未发布到 Codex 官方插件市场。
 
-从本地仓库或可用 marketplace 安装：
+在插件发布到你的环境使用的 marketplace 之前，不应预期能在 `/plugins` 或 Codex App 插件列表里搜索到 `codebase-navigator`。
 
-```bash
-/plugins
-```
-
-搜索 `codebase-navigator`，或者在环境支持时安装本地插件路径。
-
-Codex 插件元数据位于：
-
-```text
-.codex-plugin/plugin.json
-```
-
-### Codex App
-
-使用 Codex App 的插件界面，从可用插件源安装 Codebase Navigator。
-
-Codex manifest 会暴露技能目录和插件列表所需的 UI 元数据。
+现阶段请使用上面的 `npx skills add` 方式，或者在你的 Codex 环境支持本地插件路径时，从本地插件路径安装。
 
 ### 手动复制技能
 

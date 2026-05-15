@@ -36,43 +36,37 @@ This split keeps strong rules close to the workflow that needs them. Commit task
 
 ## Installation
 
-Installation depends on the agent harness. If you use multiple harnesses, install the plugin separately for each one.
+Codebase Navigator is not currently published to the official Claude or Codex plugin marketplaces. Install it from this GitHub repository, or copy the skills manually if your harness does not support plugin installation from GitHub.
+
+### Recommended: npx
+
+Install the skills from GitHub:
+
+```bash
+npx skills add needyr/codebase-navigator
+```
+
+This installs the skills from the repository source. Use this path when you want the current GitHub version and do not need official marketplace distribution.
 
 ### Claude Code
 
-Install from a local checkout:
+This repository includes Claude plugin metadata at `.claude-plugin/plugin.json`, but it is not yet published to the official Claude plugin marketplace.
+
+If your Claude Code environment supports installing a plugin directly from a local checkout, use the absolute local path:
 
 ```bash
-/plugin install /path/to/codebase-navigator
+/plugin install /absolute/path/to/codebase-navigator
 ```
 
-The Claude plugin metadata lives in:
+If your environment only supports marketplace plugins, this plugin must be published to a Claude-compatible marketplace before it can be installed that way.
 
-```text
-.claude-plugin/plugin.json
-```
+### Codex CLI and Codex App
 
-### Codex CLI
+This repository includes Codex plugin metadata at `.codex-plugin/plugin.json`, but it is not yet published to the official Codex plugin marketplace.
 
-Install from a local checkout or marketplace entry when available:
+Do not expect `codebase-navigator` to appear in `/plugins` or the Codex App plugin list until it has been published to a marketplace that your environment uses.
 
-```bash
-/plugins
-```
-
-Search for `codebase-navigator`, or install the local plugin path if your environment supports local plugin installation.
-
-The Codex plugin metadata lives in:
-
-```text
-.codex-plugin/plugin.json
-```
-
-### Codex App
-
-Use the Codex app plugin interface and install Codebase Navigator from the available plugin source.
-
-The Codex manifest exposes the skills directory and UI metadata for the app plugin list.
+For now, use the `npx skills add` method above, or install from a local plugin path if your Codex environment supports local plugin installation.
 
 ### Manual Skill Copy
 
